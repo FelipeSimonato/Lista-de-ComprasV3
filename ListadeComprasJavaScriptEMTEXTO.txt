@@ -1,0 +1,30 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const input = document.getElementById("item");
+    const addButton = document.getElementById("adicionar");
+    const lista = document.getElementById("lista");
+    const comprados = document.getElementById("comprados");
+
+    addButton.addEventListener("click", function() {
+        const itemText = input.value.trim();
+        if (itemText === "") {
+            alert("Por favor, digite um item.");
+            return;
+        }
+
+        const li = document.createElement("li");
+        li.textContent = itemText;
+
+        li.addEventListener("click", function() {
+            if (!li.classList.contains("checked")) {
+                li.classList.add("checked");
+                comprados.appendChild(li);
+            } else {
+                li.classList.remove("checked");
+                lista.appendChild(li);
+            }
+        });
+
+        lista.appendChild(li);
+        input.value = "";
+    });
+});
